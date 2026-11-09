@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 const projects = [
   { number: '01', name: 'Kanak', year: '2026', label: 'Personal finance · Android', summary: 'An expense tracker for people who want to record spending quickly, understand it clearly, and keep their data close.', capabilities: ['Text + voice entry', 'Analytics', 'Local backup'], image: 'https://raw.githubusercontent.com/sathwikcherott/kanak-app/main/docs/media/kanak-readme-motion.gif', href: 'https://github.com/sathwikcherott/kanak-app' },
-  { number: '02', name: 'PattuBook', year: '2026', label: 'Personal ledger · Android', summary: 'A calm, focused way to record money lent, repayments received, and the balance that remains.', capabilities: ['Person-ledger view', 'Activity timeline', 'JSON backup'], image: 'https://raw.githubusercontent.com/sathwikcherott/pattubook/main/screenshots/home.jpg', href: 'https://github.com/sathwikcherott/pattubook' },
+  { number: '02', name: 'PattuBook', year: '2026', label: 'Personal ledger · Android', summary: 'A calm, focused way to record money lent, repayments received, and the balance that remains.', capabilities: ['Person-ledger view', 'Activity timeline', 'JSON backup'], image: 'https://raw.githubusercontent.com/sathwikcherott/pattubook/main/docs/media/pattubook-hero.svg', href: 'https://github.com/sathwikcherott/pattubook' },
 ]
 
 function FadeIn({ children, className = '' }) {
