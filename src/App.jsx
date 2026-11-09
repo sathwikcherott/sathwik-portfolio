@@ -28,8 +28,14 @@ function Reveal({ children, className = '' }) {
 
 export default function App() {
   const [open, setOpen] = useState(false)
+  const [emailCopied, setEmailCopied] = useState(false)
   const reduced = useReducedMotion()
   const nav = ['Work', 'About', 'Playground', 'Contact']
+  const copyEmail = async () => {
+    await navigator.clipboard.writeText('sathwikcherott.dev@gmail.com')
+    setEmailCopied(true)
+    window.setTimeout(() => setEmailCopied(false), 2200)
+  }
   return <main>
     <div className="grain" aria-hidden="true" />
     <header className="nav-shell">
@@ -74,8 +80,8 @@ export default function App() {
     </section>
 
     <section id="contact" className="contact section-pad">
-      <Reveal><p className="kicker">GET IN TOUCH</p><h2>Have a good<br />idea in mind?</h2><a className="contact-link" href="mailto:sathwikcherott.dev@gmail.com">Start a conversation <ArrowUpRight /></a></Reveal>
-      <footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><a href="mailto:sathwikcherott.dev@gmail.com">EMAIL</a><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={16} /> GITHUB</a><a href="#top">BACK TO TOP <ArrowUpRight size={14} /></a></footer>
+      <Reveal><p className="kicker">GET IN TOUCH</p><h2>Have a good<br />idea in mind?</h2><button className="contact-link" type="button" onClick={copyEmail}>{emailCopied ? 'Email copied' : 'Copy email'} <ArrowUpRight /></button><p className="contact-email">sathwikcherott.dev@gmail.com</p></Reveal>
+      <footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><button className="footer-email" type="button" onClick={copyEmail}>{emailCopied ? 'EMAIL COPIED' : 'COPY EMAIL'}</button><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={16} /> GITHUB</a><a href="#top">BACK TO TOP <ArrowUpRight size={14} /></a></footer>
     </section>
   </main>
 }
