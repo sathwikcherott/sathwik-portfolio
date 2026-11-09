@@ -6,12 +6,12 @@ const projects = [
   {
     index: '01', name: 'Kanak', kind: 'Offline expense tracking',
     detail: 'A considered money companion designed for fast capture, clear records, and calm financial habits.',
-    tags: ['Android', 'Compose', 'Offline-first'], tone: 'lime',
+    tags: ['Android', 'Compose', 'Offline-first'], tone: 'lime', url: 'https://github.com/sathwikcherott/kanak-app',
   },
   {
     index: '02', name: 'PattuBook', kind: 'A modern personal ledger',
     detail: 'A focused ledger experience that makes tracking people, balances, and payments feel straightforward.',
-    tags: ['Android', 'Room', 'Material'], tone: 'violet',
+    tags: ['Android', 'Room', 'Material'], tone: 'violet', url: 'https://github.com/sathwikcherott/pattubook',
   },
 ]
 
@@ -58,7 +58,7 @@ export default function App() {
           <div className="project-meta"><span>{project.index}</span><span>{project.kind}</span></div>
           <div className="project-copy"><h2>{project.name}</h2><p>{project.detail}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
           <div className="project-art" aria-hidden="true"><div className="device"><i /><i /><b /></div></div>
-          <a className="project-open" href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><ArrowUpRight /></a>
+          <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><ArrowUpRight /></a>
         </article>
       </Reveal>)}</div>
     </section>
