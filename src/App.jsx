@@ -1,87 +1,26 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { ArrowDownRight, ArrowUpRight, Code2, Layers3, Menu, MoveRight, Sparkles, X } from 'lucide-react'
+import { ArrowDownRight, ArrowUpRight, Code2, Menu, MoveRight, X } from 'lucide-react'
 import { useState } from 'react'
 
 const projects = [
-  {
-    index: '01', name: 'Kanak', kind: 'Offline expense tracking',
-    detail: 'A considered money companion designed for fast capture, clear records, and calm financial habits.',
-    tags: ['Android', 'Compose', 'Offline-first'], tone: 'lime', url: 'https://github.com/sathwikcherott/kanak-app',
-  },
-  {
-    index: '02', name: 'PattuBook', kind: 'A modern personal ledger',
-    detail: 'A focused ledger experience that makes tracking people, balances, and payments feel straightforward.',
-    tags: ['Android', 'Room', 'Material'], tone: 'violet', url: 'https://github.com/sathwikcherott/pattubook',
-  },
+  { number: '01', name: 'Kanak', year: '2026', label: 'Personal finance · Android', summary: 'An expense tracker for people who want to record spending quickly, understand it clearly, and keep their data close.', capabilities: ['Text + voice entry', 'Analytics', 'Local backup'], image: 'https://raw.githubusercontent.com/sathwikcherott/kanak-app/main/docs/media/kanak-readme-motion.gif', href: 'https://github.com/sathwikcherott/kanak-app' },
+  { number: '02', name: 'PattuBook', year: '2026', label: 'Personal ledger · Android', summary: 'A calm, focused way to record money lent, repayments received, and the balance that remains.', capabilities: ['Person-ledger view', 'Activity timeline', 'JSON backup'], image: 'https://raw.githubusercontent.com/sathwikcherott/pattubook/main/screenshots/home.jpg', href: 'https://github.com/sathwikcherott/pattubook' },
 ]
 
-const play = [
-  ['01', 'System studies', 'Small explorations in hierarchy, spacing, and visual rhythm.', Layers3],
-  ['02', 'Motion sketches', 'Interfaces that use movement to orient, not distract.', Sparkles],
-  ['03', 'Build notes', 'Turning practical constraints into product character.', Code2],
-]
-
-function Reveal({ children, className = '' }) {
+function FadeIn({ children, className = '' }) {
   const reduced = useReducedMotion()
-  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 20 }} whileInView={reduced ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .18 }} transition={{ duration: .55, ease: [0.22, 1, 0.36, 1] }}>{children}</motion.div>
+  return <motion.div className={className} initial={reduced ? false : { opacity: 0, y: 18 }} whileInView={reduced ? {} : { opacity: 1, y: 0 }} viewport={{ once: true, amount: .16 }} transition={{ duration: .55, ease: [.22, 1, .36, 1] }}>{children}</motion.div>
 }
 
 export default function App() {
-  const [open, setOpen] = useState(false)
-  const [emailCopied, setEmailCopied] = useState(false)
-  const reduced = useReducedMotion()
+  const [menuOpen, setMenuOpen] = useState(false)
   const nav = ['Work', 'About', 'Playground', 'Contact']
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText('sathwikcherott.dev@gmail.com')
-    setEmailCopied(true)
-    window.setTimeout(() => setEmailCopied(false), 2200)
-  }
   return <main>
-    <div className="grain" aria-hidden="true" />
-    <header className="nav-shell">
-      <a className="brand" href="#top" aria-label="Sathwik Cherott, home"><span>S</span> SATHWIK</a>
-      <nav className="desktop-nav" aria-label="Main navigation">{nav.map((item) => <a href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}</nav>
-      <a className="nav-link" href="#contact">Let’s talk <ArrowUpRight size={15} /></a>
-      <button className="menu" onClick={() => setOpen(!open)} aria-label="Toggle menu" aria-expanded={open}>{open ? <X /> : <Menu />}</button>
-      {open && <nav className="mobile-nav" aria-label="Mobile navigation">{nav.map((item) => <a onClick={() => setOpen(false)} href={`#${item.toLowerCase()}`} key={item}>{item}</a>)}</nav>}
-    </header>
-
-    <section id="top" className="hero section-pad">
-      <div className="orbit orbit-one" aria-hidden="true" /><div className="orbit orbit-two" aria-hidden="true" />
-      <Reveal className="eyebrow"><span className="pulse" /> Available for thoughtful collaborations</Reveal>
-      <Reveal className="hero-title"><p>I build</p><h1>digital experiences<br /><em>with intent.</em></h1></Reveal>
-      <Reveal className="hero-bottom">
-        <p>Independent product builder working at the intersection of useful technology, clear systems, and crafted interfaces.</p>
-        <a className="circle-link" href="#work" aria-label="Explore selected work"><ArrowDownRight /></a>
-      </Reveal>
-      {!reduced && <div className="hero-marks" aria-hidden="true"><span>SC / 26</span><span>001—PORTFOLIO</span></div>}
-    </section>
-
-    <section id="work" className="section-pad work-section">
-      <Reveal><p className="kicker">SELECTED WORK <span>(02)</span></p></Reveal>
-      <div className="project-list">{projects.map((project) => <Reveal key={project.name}>
-        <article className={`project ${project.tone}`}>
-          <div className="project-meta"><span>{project.index}</span><span>{project.kind}</span></div>
-          <div className="project-copy"><h2>{project.name}</h2><p>{project.detail}</p><div className="tags">{project.tags.map(tag => <span key={tag}>{tag}</span>)}</div></div>
-          <div className="project-art" aria-hidden="true"><div className="device"><i /><i /><b /></div></div>
-          <a className="project-open" href={project.url} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><ArrowUpRight /></a>
-        </article>
-      </Reveal>)}</div>
-    </section>
-
-    <section id="about" className="about section-pad">
-      <Reveal className="about-stamp"><span>ABOUT</span><div>SC</div></Reveal>
-      <Reveal className="about-copy"><p className="large-copy">I care about the small decisions that make a product feel <em>inevitable.</em></p><p className="body-copy">From the first interaction to the last detail, I work across product thinking, interface design, and Android development to make digital tools more useful and more human.</p><a className="text-link" href="#contact">More about my approach <MoveRight size={18} /></a></Reveal>
-    </section>
-
-    <section id="playground" className="section-pad playground">
-      <Reveal><p className="kicker">DESIGN PLAYGROUND <span>(03)</span></p></Reveal>
-      <div className="play-grid">{play.map(([num, title, text, Icon]) => <Reveal key={num} className="play-card"><span>{num}</span><Icon strokeWidth={1.3} /><h3>{title}</h3><p>{text}</p><ArrowUpRight className="tiny-arrow" size={18} /></Reveal>)}</div>
-    </section>
-
-    <section id="contact" className="contact section-pad">
-      <Reveal><p className="kicker">GET IN TOUCH</p><h2>Have a good<br />idea in mind?</h2><button className="contact-link" type="button" onClick={copyEmail}>{emailCopied ? 'Email copied' : 'Copy email'} <ArrowUpRight /></button><p className="contact-email">sathwikcherott.dev@gmail.com</p></Reveal>
-      <footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><button className="footer-email" type="button" onClick={copyEmail}>{emailCopied ? 'EMAIL COPIED' : 'COPY EMAIL'}</button><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={16} /> GITHUB</a><a href="#top">BACK TO TOP <ArrowUpRight size={14} /></a></footer>
-    </section>
+    <header className="site-header"><a className="wordmark" href="#top" aria-label="Sathwik Cherott home">SATHWIK<span>CHEROTT</span></a><nav className="desktop-nav" aria-label="Main navigation">{nav.map(item => <a key={item} href={`#${item.toLowerCase()}`}>{item}</a>)}</nav><a className="header-contact" href="mailto:sathwikcherott.dev@gmail.com">Email me <ArrowUpRight size={14} /></a><button className="menu-button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu" aria-expanded={menuOpen}>{menuOpen ? <X /> : <Menu />}</button>{menuOpen && <nav className="mobile-nav" aria-label="Mobile navigation">{nav.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{item}</a>)}</nav>}</header>
+    <section id="top" className="hero"><FadeIn className="hero-index"><span>INDEPENDENT PRODUCT BUILDER</span><span>INDIA · 2026</span></FadeIn><FadeIn className="hero-headline"><p>Designing useful, intentional</p><h1>digital products<span className="lime-dot">.</span></h1></FadeIn><FadeIn className="hero-foot"><p>I’m Sathwik — I shape Android products from the first interaction through the details that make them feel at home in someone’s day.</p><a href="#work" className="discover">Selected work <ArrowDownRight /></a></FadeIn><div className="hero-rule" aria-hidden="true" /></section>
+    <section id="work" className="work-section"><FadeIn className="section-top"><span className="section-label">SELECTED WORK</span><span className="section-count">02 / 02</span></FadeIn><div className="work-list">{projects.map(project => <FadeIn key={project.name}><article className="work-card"><div className="work-number">{project.number}</div><div className="work-details"><p className="work-label">{project.label}</p><h2>{project.name}</h2><p className="work-summary">{project.summary}</p><ul>{project.capabilities.map(item => <li key={item}>{item}</li>)}</ul><a className="project-link" href={project.href} target="_blank" rel="noreferrer">View project <ArrowUpRight size={16} /></a></div><a className="project-image" href={project.href} target="_blank" rel="noreferrer" aria-label={`View ${project.name} on GitHub`}><img src={project.image} alt={`${project.name} app interface`} loading="lazy" /></a><span className="work-year">{project.year}</span></article></FadeIn>)}</div></section>
+    <section id="about" className="about-section"><FadeIn className="section-top"><span className="section-label">A LITTLE ABOUT ME</span><span className="section-count">01 / 03</span></FadeIn><FadeIn className="about-grid"><h2>I make the practical feel <em>considered.</em></h2><div><p>My work sits between product design and Android development. I’m drawn to tools with a clear job: things that help people keep track, make a decision, or get on with their day.</p><p>Good software does not have to shout. It can be direct, legible, and quietly satisfying to use.</p></div></FadeIn></section>
+    <section id="playground" className="playground-section"><FadeIn className="section-top"><span className="section-label">DESIGN PLAYGROUND</span><span className="section-count">02 / 03</span></FadeIn><FadeIn className="playground-copy"><p>Outside the shipped work, I keep a running playground for interaction studies, type experiments, and small systems that make an interface feel more coherent.</p><span>More work is being documented.</span></FadeIn></section>
+    <section id="contact" className="contact-section"><FadeIn><p className="section-label">LET’S MAKE SOMETHING USEFUL</p><a className="email-link" href="mailto:sathwikcherott.dev@gmail.com">sathwikcherott<br /><em>.dev@gmail.com</em><ArrowUpRight /></a></FadeIn><footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={15} /> GITHUB</a><a href="#top">BACK TO TOP <MoveRight size={14} /></a></footer></section>
   </main>
 }
