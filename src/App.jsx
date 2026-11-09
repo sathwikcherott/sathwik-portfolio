@@ -74,8 +74,8 @@ export default function App() {
     </section>
 
     <section id="contact" className="contact section-pad">
-      <Reveal><p className="kicker">GET IN TOUCH</p><h2>Have a good<br />idea in mind?</h2><a className="contact-link" href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer">Start a conversation <ArrowUpRight /></a></Reveal>
-      <footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={16} /> GITHUB</a><a href="#top">BACK TO TOP <ArrowUpRight size={14} /></a></footer>
+      <Reveal><p className="kicker">GET IN TOUCH</p><h2>Have a good<br />idea in mind?</h2><a className="contact-link" href="mailto:sathwikcherott.dev@gmail.com">Start a conversation <ArrowUpRight /></a></Reveal>
+      <footer><span>© {new Date().getFullYear()} SATHWIK CHEROTT</span><a href="mailto:sathwikcherott.dev@gmail.com">EMAIL</a><a href="https://github.com/sathwikcherott" target="_blank" rel="noreferrer"><Code2 size={16} /> GITHUB</a><a href="#top">BACK TO TOP <ArrowUpRight size={14} /></a></footer>
     </section>
   </main>
 }
