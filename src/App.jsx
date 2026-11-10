@@ -19,8 +19,7 @@ function KanakPreview() {
 }
 
 function PattuPreview() {
-  const screen = 'https://raw.githubusercontent.com/sathwikcherott/pattubook/main/docs/media/pattubook-hero.svg'
-  return <div className="device-scene pattu-scene" aria-label="PattuBook Android interface previews"><div className="pattu-phone back"><img src={screen} alt="" /></div><div className="pattu-phone front"><img src={screen} alt="PattuBook interface preview" loading="lazy" /></div><div className="scene-caption">The record stays<br />human-readable.</div></div>
+  return <div className="device-scene pattu-scene" aria-label="Illustrative PattuBook ledger interface"><div className="pattu-phone back"><div className="pattu-screen pattu-overview"><span className="pattu-title">PattuBook</span><b>₹ 8,450</b><small>OUTSTANDING</small><i /><i /><i /></div></div><div className="pattu-phone front"><div className="pattu-screen pattu-ledger"><div className="pattu-person"><span>AK</span><b>Arjun K.</b></div><p>Balance due <strong>₹ 2,100</strong></p><div className="pattu-entry"><span>Money lent</span><b>+ 1,500</b></div><div className="pattu-entry"><span>Returned</span><b className="returned">− 400</b></div><div className="pattu-entry"><span>Money lent</span><b>+ 1,000</b></div></div></div><div className="scene-caption">The record stays<br />human-readable.</div></div>
 }
 
 export default function App() {
